@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+:root {
+  --ui-bg: #f5f7fa;
+  --ui-surface: #ffffff;
+  --ui-border: #e2e8f0;
+  --ui-text: #111827;
+  --ui-muted: #6b7280;
+  --ui-primary: #3b82f6;
+  --ui-radius: 10px;
+  --ui-radius-sm: 6px;
+}
+
+.ui-card {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+}
+
+.ui-button {
+  background: var(--ui-primary);
+  color: white;
+  border-radius: var(--ui-radius-sm);
+  padding: 0.5rem 1rem;
+}
+
+
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ui-input {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  padding: 0.4rem 0.6rem;
+  color: var(--ui-text);
+}
+
+.ui-input-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
