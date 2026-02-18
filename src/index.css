@@ -12,31 +12,75 @@
 
 /* UI primitives */
 .ui-card {
-  @apply rounded-xl border border-border bg-card shadow-sm;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  box-shadow: var(--shadow-sm);
 }
 
 .ui-section-title {
-  @apply text-sm font-semibold uppercase tracking-wider text-foreground;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-foreground);
 }
 
 .ui-button {
-  @apply flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all active:scale-95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.ui-button:active {
+  transform: scale(0.95);
 }
 
 .ui-button-primary {
-  @apply bg-primary text-primary-foreground hover:opacity-90;
+  background-color: black;
+  color: white;
+}
+
+.ui-button-primary:hover {
+  opacity: 0.9;
 }
 
 .ui-button-ghost {
-  @apply text-muted-foreground hover:text-foreground;
+  color: hsl(0, 3%, 35%);
+  background: transparent;
+}
+
+.ui-button-ghost:hover {
+  color: var(--color-foreground);
 }
 
 .ui-input {
-  @apply bg-transparent font-mono text-sm font-medium text-foreground outline-none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-foreground);
+  outline: none;
+  border: none;
 }
 
 .ui-swatch {
-  @apply h-16 w-16 rounded-lg border border-border shadow-sm transition-transform hover:scale-110;
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 150ms ease;
+}
+
+.ui-swatch:hover {
+  transform: scale(1.1);
 }
 
 

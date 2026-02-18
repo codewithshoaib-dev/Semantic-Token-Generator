@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from "react"
 import { generateTokens } from "@/lib/generateTokens"
-import { ColorInput } from "./ColorInput"
+
 import { TokenOutput } from "./TokenOutput"
+import { ColorInput } from "./ColorInput"
 import PreviewCard from "./PreviewCard"
-// import { Button } from "@/components/button"
+
 
 
 export function GeneratorPage() {
@@ -22,9 +23,9 @@ export function GeneratorPage() {
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-      <aside className="w-72 border-r border-border bg-card p-6 space-y-6">
+      <aside className="w-72 border-r border-border bg-card p-6 overflow-y-auto space-y-6">
         <div>
-          <h2 className="ui-section-title mb-4">Colors</h2>
+          <h2 className="ui-section-title mb-4">Pick colors</h2>
           <div className="space-y-3">
             <ColorInput label="Primary" value={primary} onChange={setPrimary} />
             <ColorInput

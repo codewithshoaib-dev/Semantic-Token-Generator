@@ -11,7 +11,7 @@ type Inputs = {
 function enforceContrast(fg: string, bg: string, minRatio = 4.5) {
   let ratio = culori.wcagContrast(fg, bg)
   let fgOklch = culori.oklch(fg)
-  const bgOklch = culori.oklch(bg)
+//   const bgOklch = culori.oklch(bg)
 
   // adjust lightness until contrast is acceptable
   while (ratio < minRatio) {
