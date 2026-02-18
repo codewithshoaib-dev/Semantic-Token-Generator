@@ -1,48 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --ui-bg: #f5f7fa;
-  --ui-surface: #ffffff;
-  --ui-border: #e2e8f0;
-  --ui-text: #111827;
-  --ui-muted: #6b7280;
-  --ui-primary: #3b82f6;
-  --ui-radius: 10px;
-  --ui-radius-sm: 6px;
+  --color-background: 0 0% 100%;
+  --color-foreground: 222.2 47.4% 11.2%;
+  --color-card: 0 0% 100%;
+  --color-muted: 210 40% 96.1%;
+  --color-border: 214.3 31.8% 91.4%;
+  --color-primary: 221.2 83.2% 53.3%;
+  --color-primary-foreground: 210 40% 98%;
 }
 
+/* UI primitives */
 .ui-card {
-  background: var(--ui-surface);
-  border: 1px solid var(--ui-border);
-  border-radius: var(--ui-radius);
+  @apply rounded-xl border border-border bg-card shadow-sm;
+}
+
+.ui-section-title {
+  @apply text-sm font-semibold uppercase tracking-wider text-foreground;
 }
 
 .ui-button {
-  background: var(--ui-primary);
-  color: white;
-  border-radius: var(--ui-radius-sm);
-  padding: 0.5rem 1rem;
+  @apply flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all active:scale-95;
 }
 
+.ui-button-primary {
+  @apply bg-primary text-primary-foreground hover:opacity-90;
+}
 
-.ui-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.ui-button-ghost {
+  @apply text-muted-foreground hover:text-foreground;
 }
 
 .ui-input {
-  background: var(--ui-surface);
-  border: 1px solid var(--ui-border);
-  border-radius: var(--ui-radius-sm);
-  padding: 0.4rem 0.6rem;
-  color: var(--ui-text);
+  @apply bg-transparent font-mono text-sm font-medium text-foreground outline-none;
 }
 
-.ui-input-row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+.ui-swatch {
+  @apply h-16 w-16 rounded-lg border border-border shadow-sm transition-transform hover:scale-110;
 }
 
 

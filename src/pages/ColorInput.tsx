@@ -1,65 +1,43 @@
-"use client"
-
-type Props = {
+type ColorInputProps = {
   label: string
   value: string
   onChange: (hex: string) => void
 }
 
-export function ColorInput({ label, value, onChange }: Props) {
+export function ColorInput({ label, value, onChange }: ColorInputProps) {
   function isValidHex(v: string) {
     return /^#([0-9A-F]{3}){1,2}$/i.test(v)
   }
 
-  function handleText(e: React.ChangeEvent<HTMLInputElement>) {
-    const v = e.target.value
-    if (isValidHex(v)) onChange(v)
-  }
-
-  function handlePicker(e: React.ChangeEvent<HTMLInputElement>) {
-    onChange(e.target.value)
-  }
-
   return (
-    <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md">
-      {/* Colored header strip — mirrors PreviewCard's header */}
-      <div
-        className="relative h-10 overflow-hidden"
-        style={{ background: value }}
-      >
-        <div
-          className="absolute -right-3 -bottom-3 h-10 w-10 rounded-full opacity-20"
-          style={{ background: value, filter: "brightness(0.6)" }}
-        />
-      </div>
+    <div className="ui-card overflow-hidden transition-all hover:shadow-md">
+      <div className="relative h-12" style={{ background: value }} />
 
-      {/* Inner content panel — card-in-card like PreviewCard */}
-      <div className="relative -mt-3 mx-2 mb-2 flex items-center gap-3 rounded-lg bg-card p-3 shadow-sm">
-        {/* Circular swatch — matches PreviewCard's ColorSwatch */}
-        <div className="relative flex-shrink-0">
+      <div className="relative -mt-4 mx-2 mb-2 flex items-center gap-3 rounded-lg bg-card p-3">
+        <div className="relative">
           <input
             type="color"
             value={value}
-            onChange={handlePicker}
-            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-            aria-label={`Pick ${label} color`}
+            onChange={(e) => onChange(e.target.value)}
+            className="absolute inset-0 opacity-0 cursor-pointer"
           />
           <div
-            className="h-10 w-10 rounded-full border border-border shadow-sm transition-transform hover:scale-110"
+            className="h-12 w-12 rounded-full border-2 border-border"
             style={{ background: value }}
           />
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/60">
+        <div className="flex flex-1 flex-col">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
             {label}
           </span>
           <input
-            type="text"
             value={value}
-            onChange={handleText}
-            spellCheck={false}
-            className="min-w-0 bg-transparent font-mono text-sm font-medium text-card-foreground outline-none placeholder:text-muted-foreground/40"
+            onChange={(e) => {
+              const v = e.target.value
+              if (isValidHex(v)) onChange(v)
+            }}
+            className="ui-input"
           />
         </div>
       </div>
