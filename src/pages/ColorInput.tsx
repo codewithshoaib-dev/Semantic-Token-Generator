@@ -21,16 +21,16 @@ export function ColorInput({ label, value, onChange }: ColorInputProps) {
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:shadow-md">
       <div
-        className="relative h-12 overflow-hidden"
+        className="relative h-5 overflow-hidden"
         style={{ background: value }}
       >
         <div
-          className="absolute -right-4 -bottom-4 h-12 w-12 rounded-full opacity-20"
+          className="absolute -right-4 -bottom-4 h-10 w-10 rounded-full opacity-30"
           style={{ background: value, filter: "brightness(0.6)" }}
         />
       </div>
 
-      <div className="relative mt-3 mx-2 mb-2 flex items-center gap-3 rounded-lg bg-card p-3">
+      <div className="relative mt-2 mx-2 mb-2 flex items-center gap-3 rounded-lg bg-card p-3">
         <div className="relative shrink-0">
           <input
             type="color"
