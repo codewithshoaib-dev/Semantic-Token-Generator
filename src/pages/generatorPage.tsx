@@ -23,7 +23,7 @@ export function GeneratorPage() {
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-      <aside className="w-72 border-r border-border bg-card p-6 overflow-y-auto space-y-6">
+      <aside className="w-72 border-r sticky top-0 left-0 border-border bg-card p-6 overflow-y-auto space-y-6">
         <div>
           <h2 className="ui-section-title mb-4">Pick colors</h2>
           <div className="space-y-3">
@@ -72,8 +72,9 @@ export function GeneratorPage() {
         </div>
       </aside>
 
-      <main className="flex-1 p-8 overflow-y-auto">
-        <div className="max-w-4xl space-y-8">
+      <main className="flex flex-1 gap-6 p-8">
+        {/* Left column */}
+        <div className="flex-1 max-w-4xl space-y-8 overflow-y-auto">
           <div>
             <h1 className="text-3xl font-bold">Token Generator</h1>
             <p className="text-muted-foreground">
@@ -82,6 +83,10 @@ export function GeneratorPage() {
           </div>
 
           <PreviewCard tokens={tokens[mode]} />
+        </div>
+
+        {/* Right column */}
+        <div className="w-fit shrink-0">
           <TokenOutput tokens={tokens[mode]} format={format} />
         </div>
       </main>

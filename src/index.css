@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: 0 0% 100%;
-  --color-foreground: 222.2 47.4% 11.2%;
-  --color-card: 0 0% 100%;
-  --color-muted: 210 40% 96.1%;
-  --color-border: 214.3 31.8% 91.4%;
-  --color-primary: 221.2 83.2% 53.3%;
-  --color-primary-foreground: 210 40% 98%;
+  --color-background: hsl(0, 0%, 100%);
+  --color-foreground: hsl(222.2, 47.4%, 11.2%);
+  --color-card: hsl(0, 0%, 100%);
+  --color-muted: hsl(210, 40%, 96.1%);
+  --color-border: hsl(214.3, 31.8%, 91.4%);
+  --color-primary: hsl(221.2, 83.2%, 53.3%);
+  --color-primary-foreground: hsl(210, 40%, 98%);
+}
+
+@theme {
+    --color-primary: var(--color-primary);
 }
 
 /* UI primitives */
@@ -43,8 +47,8 @@
 }
 
 .ui-button-primary {
-  background-color: black;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-background);
 }
 
 .ui-button-primary:hover {
@@ -52,8 +56,9 @@
 }
 
 .ui-button-ghost {
-  color: hsl(0, 3%, 35%);
+  color: var(--color-foreground);
   background: transparent;
+  border:hsla(211, 25%, 36%, 0.664) solid 1px;
 }
 
 .ui-button-ghost:hover {
@@ -81,6 +86,74 @@
 
 .ui-swatch:hover {
   transform: scale(1.1);
+}
+
+.ui-card-header {
+  margin-bottom: 1rem;                 /* mb-4 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ui-card-title {
+  font-size: 1rem;               
+  font-weight: 600;                    /* font-semibold */
+  color: hsl(var(--color-foreground));
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+
+}
+
+
+.ui-code-block {
+  max-height: 18rem;                   /* max-h-72 */
+  overflow: auto;
+  border-radius: 0.5rem;               /* rounded-lg */
+  background: hsl(var(--color-muted));
+  padding: 1rem;                       /* p-4 */
+  font-size: 0.75rem;                  /* text-xs */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  color: hsl(var(--color-muted-foreground));
+}
+
+.ui-icon {
+  width: 1rem;                         /* h-4 w-4 */
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* Toast */
+.ui-toast {
+  pointer-events: none;
+  position: fixed;
+  bottom: 1.5rem;                      /* bottom-6 */
+  right: 1.5rem; 
+  z-index: 20;                      /* right-6 */
+
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--color-border));
+  background: hsl(var(--color-card));
+  padding: 0.5rem 1rem;                /* py-2 px-4 */
+  font-size: 1rem;                 /* text-sm */
+  color: hsl(var(--color-foreground));
+
+  box-shadow:
+    0 10px 15px -3px rgba(0,0,0,0.1),
+    0 4px 6px -2px rgba(0,0,0,0.05);
+
+  animation: toast-in 180ms ease-out;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 

@@ -1,60 +1,62 @@
-import { useState } from "react"
-import { Copy, Check } from "lucide-react"
+import { useState, useMemo } from "react"
+import { Copy } from "lucide-react"
 
-export function TokenOutput({
-  tokens,
-  format
-}: {
+type Props = {
   tokens: Record<string, string>
-  format: string
-}) {
-  const [copied, setCopied] = useState(false)
+  format: "css" | "json" | "tailwind"
+}
 
-  let output = ""
+export function TokenOutput({ tokens, format }: Props) {
+  const [showToast, setShowToast] = useState(false)
 
-  if (format === "css") {
-    output = Object.entries(tokens)
-      .map(([k, v]) => `--color-${k}: ${v};`)
-      .join("\n")
-  }
+  const output = useMemo(() => {
+    if (format === "css") {
+      return Object.entries(tokens)
+        .map(([k, v]) => `--color-${k}: ${v};`)
+        .join("\n")
+    }
 
-  if (format === "json") {
-    output = JSON.stringify(tokens, null, 2)
-  }
+    if (format === "json") {
+      return JSON.stringify(tokens, null, 2)
+    }
 
-  if (format === "tailwind") {
-    output = Object.entries(tokens)
-      .map(([k]) => `${k}: "var(--color-${k})"`)
-      .join(",\n")
-  }
+    if (format === "tailwind") {
+      return Object.entries(tokens)
+        .map(([k]) => `${k}: "var(--color-${k})"`)
+        .join(",\n")
+    }
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(output)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    return ""
+  }, [tokens, format])
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(output)
+
+    // Trigger toast visibility
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 1800)
   }
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4">
-      <pre className="text-xs overflow-x-auto rounded-md bg-muted p-4 font-mono text-muted-foreground">
-        {output}
-      </pre>
-      <button
-        onClick={handleCopy}
-        className="mt-3 flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 active:scale-95"
-      >
-        {copied ? (
-          <>
-            <Check className="h-4 w-4" />
-            Copied!
-          </>
-        ) : (
-          <>
-            <Copy className="h-4 w-4" />
+    <div className="relative space-y-4 p-6">
+      {/* Card */}
+      <div className="ui-card">
+        <div className="ui-card-header">
+          <h3 className="ui-card-title">Generated Tokens</h3>
+        </div>
+
+        <pre className="ui-code-block">{output}</pre>
+
+        <div className="flex justify-end">
+          <button onClick={handleCopy} className="">
+            <Copy className="ui-icon" />
             Copy
-          </>
-        )}
-      </button>
+          </button>
+        </div>
+      </div>
+
+      {/* Toast */}
+      {showToast && <div className="ui-toast">Copied to clipboard</div>}
     </div>
   )
 }
