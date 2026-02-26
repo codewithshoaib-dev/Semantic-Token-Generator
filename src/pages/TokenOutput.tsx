@@ -3,7 +3,7 @@ import { Copy } from "lucide-react"
 
 type Props = {
   tokens: Record<string, string>
-  format: "css" | "json" | "tailwind"
+  format: "css" | "json" 
 }
 
 export function TokenOutput({ tokens, format }: Props) {
@@ -25,32 +25,25 @@ export function TokenOutput({ tokens, format }: Props) {
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(output)
-
-    // Trigger toast visibility
     setShowToast(true)
     setTimeout(() => setShowToast(false), 1800)
   }
 
   return (
-    <div className="relative space-y-4 p-6">
-      {/* Card */}
-      <div className="ui-card">
-        <div className="ui-card-header">
-          <h3 className="ui-card-title">Generated Tokens</h3>
-        </div>
-
-        <pre className="ui-code-block">{output}</pre>
-
-        <div className="flex justify-end">
-          <button onClick={handleCopy} className="">
-            <Copy className="ui-icon" />
+    <div className="token-output-container">
+      <div className="token-card">
+        <header className="token-card-header">
+          <h3 className="token-card-title">Generated Tokens</h3>
+          <button onClick={handleCopy} className="token-copy-button ml-2">
+            <Copy className="token-copy-icon " />
             Copy
           </button>
-        </div>
+        </header>
+
+        <pre className="token-code">{output}</pre>
       </div>
 
-      {/* Toast */}
-      {showToast && <div className="ui-toast">Copied to clipboard</div>}
+      {showToast && <div className="token-toast">Copied to clipboard</div>}
     </div>
   )
 }
