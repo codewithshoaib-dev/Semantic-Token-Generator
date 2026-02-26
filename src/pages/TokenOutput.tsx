@@ -20,12 +20,6 @@ export function TokenOutput({ tokens, format }: Props) {
       return JSON.stringify(tokens, null, 2)
     }
 
-    if (format === "tailwind") {
-      return Object.entries(tokens)
-        .map(([k]) => `${k}: "var(--color-${k})"`)
-        .join(",\n")
-    }
-
     return ""
   }, [tokens, format])
 

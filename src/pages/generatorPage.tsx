@@ -71,7 +71,7 @@ export function GeneratorPage() {
         <div>
           <h3 className="ui-section-title mb-3">Export</h3>
           <div className="flex gap-2 flex-wrap">
-            {(["css", "tailwind", "json"] as const).map((f) => (
+            {(["css",  "json"] as const).map((f) => (
               <button
                 key={f}
                 onClick={() => setFormat(f)}
